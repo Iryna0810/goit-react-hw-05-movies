@@ -33,7 +33,7 @@ const MovieDetails = () => {
     }, [movieId])
    
     return (
-        <div>MovieDetails - {movieId}
+        <div>
             {isLoading && <Loader />}
             {error && <div>Something went wrong. Try again later</div>}
                 
