@@ -20,7 +20,6 @@ const Reviews = () => {
         if (movieId) {
             currentFilmInfoReviews(movieId)
                 .then(({ data }) => {
-                    console.log(data.results)
                     setReviews(data.results);
                 })
                 .catch((error) => setError(error))
