@@ -1,4 +1,5 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import currentFilmInfoCast from 'servises/fetch_movie_current cast'
 import Loader from '../Loader/Loader'
 import "../styles.css"
@@ -10,14 +11,11 @@ const Cast = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [movieId, setMovieId] = useState('');
-    
-    const getLocalStorage = () => {
-        const parseContacts = JSON.parse(window.localStorage.getItem('movieIdKey'));
-        if (parseContacts) { setMovieId(parseContacts) };
-    }
-   
+    const location = useLocation();
+
     useEffect(() => {
-        getLocalStorage();
+        // getLocalStorage();
+        setMovieId(location.state);
         setIsLoading(true);
         if (movieId) {
             currentFilmInfoCast(movieId)
@@ -29,7 +27,7 @@ const Cast = () => {
                     setIsLoading(false)
                 })
         }
-    }, [movieId])
+    }, [movieId, location.state])
     
     return (
         <div>

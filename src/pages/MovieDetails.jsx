@@ -1,5 +1,5 @@
-import { useParams, Outlet } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useParams, Outlet, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import Loader from '../components/Loader/Loader'
 import { LinkPage, List } from 'components/styled'
 import currentFilmInfo from 'servises/fetch_movie_current';
@@ -12,6 +12,11 @@ const MovieDetails = () => {
     const [films, setFilms] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const location = useLocation();
+    const bankLinkLocationRef = useRef(location.state?.from ?? './movies');
+
+    console.log(bankLinkLocationRef.current);
+    console.log(location);
 
 
     const setLocalStorage = (movieId) => {
@@ -39,6 +44,7 @@ const MovieDetails = () => {
                 
             <div key={movieId} className="ImageGalleryItem">
                 <div>
+                    <LinkPage to='/movies' >Go Back</LinkPage>
                     <img
                         src={`${IMG_URL}/${films.backdrop_path}`}
                         alt={films.title} />
@@ -48,10 +54,10 @@ const MovieDetails = () => {
             </div>
             <List>
                 <li>
-                    <LinkPage to="cast" key={movieId}>Cast</LinkPage>
+                    <LinkPage to="cast" state={movieId}>Cast</LinkPage>
                 </li>
                 <li>
-                    <LinkPage to="reviews">Reviews</LinkPage>
+                    <LinkPage to="reviews" state={movieId}>Reviews</LinkPage>
                 </li>
             </List>
             <Outlet />
