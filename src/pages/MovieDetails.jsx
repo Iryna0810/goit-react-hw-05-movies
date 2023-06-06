@@ -17,10 +17,6 @@ const MovieDetails = () => {
 
     const bankLinkLocationRef = useRef(location.state?.from ?? '/');
 
-    console.log(bankLinkLocationRef);
-    console.log(location.state);
-
-
     const setLocalStorage = (movieId) => {
         window.localStorage.setItem('movieIdKey', JSON.stringify(movieId));
     }

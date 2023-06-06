@@ -5,8 +5,6 @@ import { useLocation } from 'react-router-dom';
 
 const FilmGallery = ({ films, error, loading }) => {
     const location = useLocation();
-    console.log(location.pathname);
-
     return (
         <ul className="FilmGallery">
             {loading && <Loader />}
