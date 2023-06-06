@@ -4,7 +4,7 @@ const IMG_URL = `https://image.tmdb.org/t/p/original`
 
 const FilmGalleryItem = ({ film, location }) => {
   const { id, overview, title, backdrop_path } = film;
-
+  console.log(location);
   return (
     <li key={id} className="ImageGalleryItem">
       <div>     
